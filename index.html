@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <title>Ember Testpage</title>
+
+<!-- Bootstrap 3.0.3 default theme -->
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">  -->   
+    <!-- Bootstrap theme css -->
+    <!-- <link href="libs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">  -->
+<!-- Bootstrap 3.0.3 theme "Flatly" -->
+    <!-- Bootstrap core CSS -->
+    <link href="libs/bootstrap/css/flatly/bootstrap.css" rel="stylesheet">   
+    <!-- Bootstrap theme css -->
+    <link href="libs/bootstrap/css/flatly/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/theme.css" rel="stylesheet">  
+ 
+  </head>
+
+  <body>
+
+    <!-- Include all JS Libraries  -->
+      <!-- JQuery -->    
+      <script src="libs/js/jquery-1.10.2.min.js"></script>
+      <!-- Handlebars --> 
+      <script src="libs/js/handlebars-v1.3.0.js"></script>
+      <!-- Ember --> 
+      <script src="libs/js/ember.js"></script>
+      <!-- Ember Data --> 
+      <script src="libs/js/ember-data.js"></script>
+      <!-- Twitter Bootstrap 3.0.3 --> 
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+
+      <!-- App code -->
+      <script src="app/app.js"></script>
+      <script src="app/router.js"></script>
+
+      <script src="app/routes/dokumente_routes.js"></script>
+      <script src="app/controllers/dokumente_controller.js"></script>
+      <script src="app/models/dokument_model.js"></script>
+      
+      <script src="app/views/alert.js"></script>
+
+      <script src="app/controllers/flash.js"></script>
+      <script src="app/views/flash_list.js"></script>
+      
+      <!-- Testdata for 'dokumente' -->
+      <script src="app/data/testdata.js"></script>
+        
+    <!-- Navbar -->    
+    <script type="text/x-handlebars" data-template-name="application">
+      <div class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Ausbildung</a>
+          </div>          
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>{{#link-to "dokumente"}}Noten{{/link-to}}</li>
+              <li>{{#link-to "werke"}}Notensammlungen{{/link-to}}</li>
+              <li>{{#link-to "autoren"}}Autoren{{/link-to}}</li>
+              <li>{{#link-to "verlage"}}Verlage{{/link-to}}</li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>{{#link-to "info"}}Info{{/link-to}}</li>
+                  <li>{{#link-to "info.manual"}}Handbuch{{/link-to}}</li>
+                </ul>
+              </li>
+          	</ul>
+          </div>  <!--/.nav-collapse -->
+        </div>
+      </div>
+          
+      <div class="container">
+        {{view App.FlashListView}}
+        <div class="row">
+          {{outlet}}
+        </div>
+      </div>
+            
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="dokumente">
+      <h1>Liste der Notenblätter</h1>
+      <table class="table table-striped">
+        {{#each controller}}
+          <tr>
+            <td>{{titel}}</td>
+            <td>{{url}}</td>
+          </tr>
+        {{/each}}
+      </table>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="_alert">
+      {{message}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="werke">
+      <h1>"Notensammlungen" Seite</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="autoren">
+      <h1>"Autoren" Seite</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="verlage">
+      <h1>"Verlage" Seite</h1>
+    </script>
+            
+    <script type="text/x-handlebars" data-template-name="info">
+      <h1>"Info" Seite</h1>
+      {{outlet}}
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="info/manual">
+      <h1>"manual" Seite</h1>
+    </script>
+
+  </body>
+
+</html>
