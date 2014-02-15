@@ -13,21 +13,117 @@
 
 <!-- Bootstrap 3.0.3 default theme -->
     <!-- Bootstrap core CSS -->
-    <!-- <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">  -->   
+    <!-- <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->   
     <!-- Bootstrap theme css -->
-    <!-- <link href="libs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">  -->
+    <!-- <link href="libs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"> -->
 <!-- Bootstrap 3.0.3 theme "Flatly" -->
     <!-- Bootstrap core CSS -->
-    <link href="libs/bootstrap/css/flatly/bootstrap.css" rel="stylesheet">   
+    <!-- <link href="libs/bootstrap/css/flatly/bootstrap.css" rel="stylesheet">  -->   
+    <link href="libs/bootstrap/css/flatly/bootstrap.min.css" rel="stylesheet">   
     <!-- Bootstrap theme css -->
-    <link href="libs/bootstrap/css/flatly/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="libs/bootstrap/css/flatly/bootstrap.theme.css" rel="stylesheet">  -->
 
     <!-- Custom styles for this template -->
-    <link href="css/theme.css" rel="stylesheet">  
+<!--    <link href="css/theme.css" rel="stylesheet">  -->  
  
   </head>
 
   <body>
+
+    <!-- Navbar -->    
+    <script type="text/x-handlebars" id="application">
+      <div class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Ausbildung</a>
+        </div>          
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>{{#link-to "dokumente"}}Noten{{/link-to}}</li>
+            <li>{{#link-to "werke"}}Notensammlungen{{/link-to}}</li>
+            <li>{{#link-to "autoren"}}Autoren{{/link-to}}</li>
+            <li>{{#link-to "verlage"}}Verlage{{/link-to}}</li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>{{#link-to "info"}}Info{{/link-to}}</li>
+                <li>{{#link-to "info.manual"}}Handbuch{{/link-to}}</li>
+              </ul>
+            </li>
+        	</ul>
+        </div>  <!--/.nav-collapse -->
+      </div>
+      <div class="container-fluid">
+<!--        {{view App.FlashListView}}  -->
+        <div class="row-fluid">
+            {{outlet}}
+        </div>
+      </div>
+    </script>
+    
+    <script type="text/x-handlebars" id="dokumente">
+      <div class="container-fluid">
+        <h1>Liste der Notenblätter</h1>
+        <div class="row">
+          <div class="col-xs-6 col-md-4">          
+            <table class="table table-striped">
+              {{#each}}
+                <tr>
+                  <td>
+                    {{#link-to 'dokument' this}} {{id}} {{/link-to}}
+                  </td>
+                  <td>{{titel}}</td>
+                  <td>{{url}}</td>
+                </tr>
+              {{/each}}
+            </table>
+          </div>
+          <div class="col-xs-12 col-md-8">
+            {{outlet}}
+          </div>               
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" id="dokument">
+      <h1>{{titel}}</h1>
+      <h2>{{url}}</h2>
+      <h2>{{autorenvorname}}</h2>
+      <h2>{{autorenname}}</h2>
+      <h2>{{datum}}</h2>
+      <h2>{{notenschrift}}</h2>
+    </script>
+
+    <script type="text/x-handlebars" id="_alert">
+      {{message}}
+    </script>
+
+    <script type="text/x-handlebars" id="werke">
+      <h1>"Notensammlungen" Seite</h1>
+    </script>
+
+    <script type="text/x-handlebars" id="autoren">
+      <h1>"Autoren" Seite</h1>
+    </script>
+
+    <script type="text/x-handlebars" id="verlage">
+      <h1>"Verlage" Seite</h1>
+    </script>
+            
+    <script type="text/x-handlebars" id="info">
+      <h1>"Info" Seite</h1>
+      {{outlet}}
+    </script>
+    
+    <script type="text/x-handlebars" id="info/manual">
+      <h1>"manual" Seite</h1>
+    </script>
+
 
     <!-- Include all JS Libraries  -->
       <!-- JQuery -->    
@@ -58,83 +154,6 @@
       <!-- Testdata for 'dokumente' -->
       <script src="app/data/testdata.js"></script>
         
-    <!-- Navbar -->    
-    <script type="text/x-handlebars" data-template-name="application">
-      <div class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Ausbildung</a>
-          </div>          
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li>{{#link-to "dokumente"}}Noten{{/link-to}}</li>
-              <li>{{#link-to "werke"}}Notensammlungen{{/link-to}}</li>
-              <li>{{#link-to "autoren"}}Autoren{{/link-to}}</li>
-              <li>{{#link-to "verlage"}}Verlage{{/link-to}}</li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li>{{#link-to "info"}}Info{{/link-to}}</li>
-                  <li>{{#link-to "info.manual"}}Handbuch{{/link-to}}</li>
-                </ul>
-              </li>
-          	</ul>
-          </div>  <!--/.nav-collapse -->
-        </div>
-      </div>
-          
-      <div class="container">
-        {{view App.FlashListView}}
-        <div class="row">
-          {{outlet}}
-        </div>
-      </div>
-            
-    </script>
-    
-    <script type="text/x-handlebars" data-template-name="dokumente">
-      <h1>Liste der Notenblätter</h1>
-      <table class="table table-striped">
-        {{#each controller}}
-          <tr>
-            <td>{{titel}}</td>
-            <td>{{url}}</td>
-          </tr>
-        {{/each}}
-      </table>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="_alert">
-      {{message}}
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="werke">
-      <h1>"Notensammlungen" Seite</h1>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="autoren">
-      <h1>"Autoren" Seite</h1>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="verlage">
-      <h1>"Verlage" Seite</h1>
-    </script>
-            
-    <script type="text/x-handlebars" data-template-name="info">
-      <h1>"Info" Seite</h1>
-      {{outlet}}
-    </script>
-    
-    <script type="text/x-handlebars" data-template-name="info/manual">
-      <h1>"manual" Seite</h1>
-    </script>
-
   </body>
 
 </html>
